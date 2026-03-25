@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HearingVault | Account Deletion</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --background-color: #f8f9fa;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header Style */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        /* Container */
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+            flex-grow: 1;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--accent-color);
+        }
+
+        .card h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .alert-box {
+            background-color: #fdf2f2;
+            border-left: 5px solid var(--accent-color);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .instruction-box {
+            background-color: #ebf5fb;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        /* Form / Button */
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #c0392b;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>HearingVault</h1>
+    </header>
+
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Home</a>
+        
+        <div class="card">
+            <h2>Account Deletion Request</h2>
+            
+            <p>At HearingVault, we respect your privacy and your right to control your personal data. If you wish to delete your account and all associated data, you can do so by following the instructions below.</p>
+            
+            <div class="instruction-box">
+                <h3>Method 1: Direct Deletion from the App (Recommended)</h3>
+                <p>The fastest and most secure way to delete your data is directly through the HearingVault app:</p>
+                <ol>
+                    <li>Open the HearingVault app and log into your account.</li>
+                    <li>Navigate to <strong>Settings</strong>.</li>
+                    <li>Scroll down and tap on <strong>Delete Account & Data</strong>.</li>
+                    <li>Confirm your choice. Your account and all synchronized data will be permanently wiped immediately.</li>
+                </ol>
+            </div>
+            
+            <div class="alert-box">
+                <h3>Method 2: Email Request</h3>
+                <p>If you no longer have access to the app, you can request manual data deletion. Please note that for security purposes, you must send the request from the email address associated with your HearingVault account.</p>
+                
+                <p><strong>What happens when your account is deleted:</strong></p>
+                <ul>
+                    <li>Your login credentials will be permanently erased.</li>
+                    <li>All your synced cases, hearing dates, and cloud records will be permanently deleted from our servers.</li>
+                    <li>This action cannot be undone.</li>
+                </ul>
+                
+                <a href="mailto:privacy@aacrazyenterprises@gmail.com?subject=Account%20Deletion%20Request&body=Hello,%0D%0A%0D%0AI%20would%20like%20to%20request%20the%20deletion%20of%20my%20HearingVault%20account%20and%20all%20associated%20data.%0D%0A%0D%0AMy%20email%20address%20is:%0D%0A[Please confirm your email address here]%0D%0A%0D%0AThank%20you." class="btn">Request Deletion via Email</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 AACrazy Enterprises. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

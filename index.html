@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HearingVault | The Ultimate Legal Case Manager</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --background-color: #f8f9fa;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header Style */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background-color: var(--background-color);
+            clip-path: polygon(0 100%, 100% 100%, 100% 0);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.3rem;
+            margin-top: 15px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        /* Container & Grid */
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: -30px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            border-top: 5px solid var(--secondary-color);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .feature-card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+
+        /* Buttons & Links */
+        .btn-container {
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.2s;
+            box-shadow: 0 4px 6px rgba(52, 152, 219, 0.3);
+            margin: 10px;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+
+        footer a {
+            color: #bdc3c7;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        .resources-section {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-top: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .resources-section h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .resources-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .resources-list li {
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .resources-list li a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .resources-list li a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>HearingVault</h1>
+        <p>The smartest way for advocates to organize cases, track hearings, and stay ahead of deadlines.</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="btn-container">
+            <a href="#" class="btn">Get it on Google Play</a>
+        </div>
+
+        <div class="features">
+            <div class="feature-card">
+                <h3>Track Hearings</h3>
+                <p>Never miss a court date again. Access your entire schedule directly from a beautiful calendar interface.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>Organize Cases</h3>
+                <p>Keep all client details, documents, and case histories securely stored and easily searchable.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>Cloud Sync</h3>
+                <p>Your data stays backed up securely with seamless integration, access across all your Android devices.</p>
+            </div>
+        </div>
+
+        <div class="resources-section">
+            <h2>Legal & Developer Resources</h2>
+            <p>Access our transparent policies and ad configurations hosted directly for our users and ad partners.</p>
+            <ul class="resources-list">
+                <li>
+                    <span>📄&nbsp;&nbsp;</span>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                </li>
+                <li>
+                    <span>⚙️&nbsp;&nbsp;</span>
+                    <a href="app-ads.txt">AdMob Verification (app-ads.txt)</a>
+                </li>
+                <li>
+                    <span>🗑️&nbsp;&nbsp;</span>
+                    <a href="delete-account.html">Account & Data Deletion</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 AACrazy Enterprises. All rights reserved.</p>
+        <p>
+            <a href="mailto:privacy@aacrazyenterprises@gmail.com">Contact Support</a> | 
+            <a href="privacy-policy.html">Privacy</a> |
+            <a href="delete-account.html">Delete Account</a>
+        </p>
+    </footer>
+
+</body>
+</html>
