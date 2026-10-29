@@ -1,169 +1,516 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HearingVault | Account Deletion</title>
-    <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="How to delete your HearingVault account and all associated data: in the app, on this page, or by verified email request.">
+<meta name="theme-color" content="#2c3e50">
+<title>Delete Account and Data | HearingVault</title>
+<style>
+    :root {
+        --primary: #2c3e50;
+        --primary-dark: #1f2d3a;
+        --secondary: #3498db;
+        --secondary-dark: #2477b0;
+        --accent: #e74c3c;
+        --accent-dark: #c0392b;
+        --bg: #f5f8fb;
+        --card: #ffffff;
+        --ink: #233140;
+        --muted: #5f7183;
+        --line: #e4ebf2;
+        --ok: #1e8e5a;
+        --radius: 16px;
+        --shadow: 0 6px 24px rgba(20, 40, 70, .06);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        line-height: 1.65;
+        -webkit-text-size-adjust: 100%;
+    }
+
+    a { color: var(--secondary-dark); }
+    :focus-visible { outline: 3px solid var(--secondary); outline-offset: 2px; border-radius: 6px; }
+
+    .skip { position: absolute; left: -9999px; top: 0; background: var(--primary); color: #fff; padding: 12px 18px; z-index: 100; }
+    .skip:focus { left: 12px; top: 12px; }
+
+    .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(255, 255, 255, .92);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-inner {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 12px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+    }
+
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; color: var(--primary); text-decoration: none; }
+    .brand:hover { text-decoration: none; }
+
+    .brand .mark {
+        display: grid;
+        place-items: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 9px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: #fff;
+        font-size: .82rem;
+        font-weight: 700;
+    }
+
+    .topnav { display: flex; gap: 18px; font-size: .92rem; }
+    .topnav a { color: var(--muted); text-decoration: none; font-weight: 600; }
+    .topnav a:hover { color: var(--secondary-dark); }
+
+    .hero { background: linear-gradient(135deg, var(--primary), var(--accent)); color: #fff; padding: 50px 20px 56px; }
+    .hero-inner { max-width: 980px; margin: 0 auto; }
+    .eyebrow { margin: 0 0 8px; font-size: .78rem; letter-spacing: .18em; text-transform: uppercase; opacity: .82; font-weight: 700; }
+    .hero h1 { margin: 0; font-size: clamp(1.9rem, 5vw, 2.6rem); font-weight: 700; letter-spacing: -.4px; }
+    .hero .lede { margin: 14px 0 0; max-width: 62ch; font-size: 1.05rem; opacity: .95; }
+
+    .pills { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 0; padding: 0; font-size: .82rem; font-weight: 600; }
+    .pills li { background: rgba(255, 255, 255, .16); border: 1px solid rgba(255, 255, 255, .28); padding: 6px 12px; border-radius: 999px; }
+
+    main { max-width: 980px; margin: -26px auto 64px; padding: 0 20px; }
+
+    .card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 28px 30px;
+        margin-bottom: 22px;
+    }
+
+    .card > *:first-child { margin-top: 0; }
+    .card > *:last-child { margin-bottom: 0; }
+
+    h2 {
+        font-size: 1.34rem;
+        margin: 0 0 14px;
+        color: var(--primary);
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        scroll-margin-top: 84px;
+    }
+
+    h2 .num {
+        flex: none;
+        display: inline-grid;
+        place-items: center;
+        min-width: 30px;
+        height: 30px;
+        padding: 0 8px;
+        border-radius: 9px;
+        background: rgba(52, 152, 219, .12);
+        color: var(--secondary-dark);
+        font-size: .88rem;
+        font-weight: 700;
+    }
+
+    h3 { font-size: 1.02rem; margin: 20px 0 8px; color: var(--primary-dark); }
+    p { margin: 0 0 12px; }
+    ul, ol { margin: 0 0 14px; padding-left: 22px; }
+    li { margin: 6px 0; }
+    strong { color: var(--primary-dark); }
+
+    .muted { color: var(--muted); font-size: .93rem; }
+
+    .summary {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 14px;
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        padding: 0;
+        margin-bottom: 22px;
+    }
+
+    .tile {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-top: 4px solid var(--accent);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        padding: 18px 20px;
+    }
+    .tile h3 { margin: 0 0 6px; font-size: .95rem; }
+    .tile p { margin: 0; font-size: .88rem; color: var(--muted); }
+
+    .note, .warn, .ok { border-radius: 12px; padding: 14px 18px; margin: 16px 0; font-size: .94rem; }
+    .note { background: #eef6fd; border-left: 4px solid var(--secondary); }
+    .warn { background: #fdf1f0; border-left: 4px solid var(--accent); }
+    .ok { background: #eef8f2; border-left: 4px solid var(--ok); }
+    .note p:last-child, .warn p:last-child, .ok p:last-child { margin-bottom: 0; }
+
+    .table-wrap { overflow-x: auto; margin: 14px 0; }
+
+    table { width: 100%; border-collapse: collapse; font-size: .92rem; min-width: 520px; }
+
+    thead th {
+        text-align: left;
+        background: #f2f6fa;
+        color: var(--primary);
+        font-size: .84rem;
+        letter-spacing: .04em;
+        text-transform: uppercase;
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--line);
+        white-space: nowrap;
+    }
+
+    tbody td { padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    tbody tr:last-child td { border-bottom: 0; }
+    tbody tr:nth-child(even) { background: #fafcfe; }
+    tbody th { text-align: left; padding: 11px 12px; border-bottom: 1px solid var(--line); width: 30%; }
+
+    code {
+        font-family: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+        font-size: .88em;
+        background: #eef2f7;
+        padding: 2px 6px;
+        border-radius: 5px;
+        word-break: break-word;
+    }
+
+    .steps { list-style: none; counter-reset: step; padding: 0; margin: 16px 0; }
+
+    .steps li { counter-increment: step; position: relative; padding: 0 0 0 46px; margin: 0 0 14px; }
+
+    .steps li::before {
+        content: counter(step);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: var(--accent);
+        color: #fff;
+        display: grid;
+        place-items: center;
+        font-size: .86rem;
+        font-weight: 700;
+    }
+
+    .steps li strong { display: block; }
+
+    .btn-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+
+    .btn {
+        display: inline-block;
+        padding: 12px 22px;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: .95rem;
+        text-decoration: none;
+        transition: background-color .25s ease, transform .2s ease;
+    }
+
+    .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 4px 10px rgba(231, 76, 60, .28); }
+    .btn-primary:hover { background: var(--accent-dark); transform: translateY(-1px); text-decoration: none; }
+
+    .btn-ghost { background: #fff; color: var(--primary); border: 1px solid var(--line); }
+    .btn-ghost:hover { border-color: var(--accent); text-decoration: none; }
+
+    footer { background: var(--primary); color: #cfd8e3; padding: 32px 20px; text-align: center; font-size: .9rem; margin-top: 40px; }
+    footer a { color: #a9c7e4; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    footer p { margin: 4px 0; }
+
+    @media (prefers-color-scheme: dark) {
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --background-color: #f8f9fa;
-            --text-color: #333333;
+            --bg: #0f1720;
+            --card: #16212c;
+            --ink: #dbe4ee;
+            --muted: #93a4b6;
+            --line: #26333f;
+            --primary-dark: #eaf1f8;
+            --shadow: 0 6px 24px rgba(0, 0, 0, .35);
         }
+        .topbar { background: rgba(15, 23, 32, .92); }
+        .brand, h2, h3, strong { color: #eaf1f8; }
+        h2 .num { background: rgba(52, 152, 219, .18); color: #7cb8e6; }
+        .note { background: #17293a; }
+        .warn { background: #2f1c1b; }
+        .ok { background: #14291f; }
+        thead th { background: #1b2836; color: #cfe0f0; }
+        tbody tr:nth-child(even) { background: #1a252f; }
+        code { background: #1d2a36; color: #cfe0f0; }
+        .btn-ghost { background: transparent; color: #dbe4ee; }
+        a { color: #7cb8e6; }
+    }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+    @media (max-width: 620px) {
+        .card { padding: 22px 18px; }
+        .hero { padding: 40px 18px 46px; }
+        main { padding: 0 14px; }
+        .topnav { gap: 12px; font-size: .85rem; }
+        .topnav a:first-child { display: none; }
+        table { min-width: 460px; }
+        tbody th { width: 38%; }
+    }
 
-        /* Header Style */
-        header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-        }
-
-        /* Container */
-        .container {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 20px;
-            flex-grow: 1;
-        }
-
-        .card {
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-top: 5px solid var(--accent-color);
-        }
-
-        .card h2 {
-            color: var(--primary-color);
-            margin-top: 0;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #eee;
-        }
-
-        .alert-box {
-            background-color: #fdf2f2;
-            border-left: 5px solid var(--accent-color);
-            padding: 15px 20px;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
-
-        .instruction-box {
-            background-color: #ebf5fb;
-            border-left: 5px solid var(--secondary-color);
-            padding: 15px 20px;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
-
-        /* Form / Button */
-        .btn {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: white;
-            padding: 12px 25px;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: background-color 0.3s ease;
-            margin-top: 20px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background-color: #c0392b;
-        }
-        
-        .back-link {
-            display: inline-block;
-            margin-bottom: 20px;
-            text-decoration: none;
-            color: var(--secondary-color);
-            font-weight: bold;
-        }
-        
-        .back-link:hover {
-            text-decoration: underline;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--primary-color);
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: auto;
-        }
-    </style>
+    @media print {
+        .topbar, .btn-row { display: none; }
+        body { background: #fff; color: #000; }
+        .hero { background: none; color: #000; padding: 0 0 16px; }
+        .hero .pills li { border-color: #999; }
+        .card { box-shadow: none; border: 0; padding: 0 0 18px; }
+        .card, h2, h3, table { break-inside: avoid; }
+    }
+</style>
 </head>
 <body>
 
-    <header>
-        <h1>HearingVault</h1>
-    </header>
+<a class="skip" href="#main">Skip to content</a>
 
-    <div class="container">
-        <a href="index.html" class="back-link">← Back to Home</a>
-        
-        <div class="card">
-            <h2>Account Deletion Request</h2>
-            
-            <p>At HearingVault, we respect your privacy and your right to control your personal data. If you wish to delete your account and all associated data, you can do so by following the instructions below.</p>
-            
-            <div class="instruction-box">
-                <h3>Method 1: Direct Deletion from the App (Recommended)</h3>
-                <p>The fastest and most secure way to delete your data is directly through the HearingVault app:</p>
-                <ol>
-                    <li>Open the HearingVault app and log into your account.</li>
-                    <li>Navigate to <strong>Settings</strong>.</li>
-                    <li>Scroll down and tap on <strong>Delete Account & Data</strong>.</li>
-                    <li>Confirm your choice. Your account and all synchronized data will be permanently wiped immediately.</li>
-                </ol>
-            </div>
-            
-            <div class="alert-box">
-                <h3>Method 2: Email Request</h3>
-                <p>If you no longer have access to the app, you can request manual data deletion. Please note that for security purposes, you must send the request from the email address associated with your HearingVault account.</p>
-                
-                <p><strong>What happens when your account is deleted:</strong></p>
-                <ul>
-                    <li>Your login credentials will be permanently erased.</li>
-                    <li>All your synced cases, hearing dates, and cloud records will be permanently deleted from our servers.</li>
-                    <li>This action cannot be undone.</li>
-                </ul>
-                
-                <a href="mailto:privacy@aacrazyenterprises@gmail.com?subject=Account%20Deletion%20Request&body=Hello,%0D%0A%0D%0AI%20would%20like%20to%20request%20the%20deletion%20of%20my%20HearingVault%20account%20and%20all%20associated%20data.%0D%0A%0D%0AMy%20email%20address%20is:%0D%0A[Please confirm your email address here]%0D%0A%0D%0AThank%20you." class="btn">Request Deletion via Email</a>
-            </div>
+<div class="topbar">
+    <div class="topbar-inner">
+        <a class="brand" href="index.html"><span class="mark">HV</span> HearingVault</a>
+        <nav class="topnav" aria-label="Site">
+            <a href="index.html">Home</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="app-ads.txt">app-ads.txt</a>
+        </nav>
+    </div>
+</div>
+
+<div class="hero">
+    <div class="hero-inner">
+        <p class="eyebrow">Legal &middot; Data deletion</p>
+        <h1>Delete your account and data</h1>
+        <p class="lede">
+            You can delete HearingVault and everything in it at any time. This page lists the
+            in-app route, the web route and the email route, and exactly what each one removes.
+        </p>
+        <ul class="pills">
+            <li>No questions asked</li>
+            <li>Cloud records removed</li>
+            <li>Email requests completed within 30 days</li>
+        </ul>
+    </div>
+</div>
+
+<main id="main">
+
+    <div class="summary">
+        <div class="tile">
+            <h3>Fastest route</h3>
+            <p>Settings &rarr; Delete Account inside the app. It runs immediately, with no waiting period.</p>
+        </div>
+        <div class="tile">
+            <h3>What goes</h3>
+            <p>Cases, hearings, fee entries, documents, local database, app sign-in and the account itself.</p>
+        </div>
+        <div class="tile">
+            <h3>What stays</h3>
+            <p>Aggregated analytics, crash reports until they expire, and Google Play purchase history.</p>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2025 AACrazy Enterprises. All rights reserved.</p>
-    </footer>
+    <!-- Method 1 -->
+    <section class="card" id="in-app">
+        <h2><span class="num">1</span>Delete from inside the app (recommended)</h2>
+        <p>This is the most secure method, because you prove you own the account as part of the flow.</p>
+        <ol class="steps">
+            <li>
+                <strong>Open HearingVault and sign in</strong>
+                If the account is already signed in, the app opens on the dashboard.
+            </li>
+            <li>
+                <strong>Open Settings</strong>
+                Use the menu on the dashboard and choose <em>Settings</em>.
+            </li>
+            <li>
+                <strong>Tap Delete Account</strong>
+                It sits in the account section at the bottom of the page, in red.
+            </li>
+            <li>
+                <strong>Confirm your identity</strong>
+                Re-enter your password, or re-authenticate with Google if you signed in with Google.
+            </li>
+            <li>
+                <strong>Wait for the confirmation</strong>
+                The app deletes your cloud records, then the device files, then the local database,
+                then the login. You are returned to the sign-in screen.
+            </li>
+        </ol>
+        <div class="warn">
+            <p>
+                <strong>This cannot be undone.</strong> There is no recovery window and no restore
+                from our side. Export or share anything you need before you confirm.
+            </p>
+        </div>
+    </section>
+
+    <!-- What is deleted -->
+    <section class="card" id="what-is-deleted">
+        <h2><span class="num">2</span>What deletion removes</h2>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr><th scope="col">Data</th><th scope="col">Where it was</th><th scope="col">Result</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Cases</td><td>Device and your Firebase account</td><td>Deleted from both</td></tr>
+                    <tr><td>Hearings and reminders</td><td>Device and your Firebase account</td><td>Deleted; pending notifications cancelled by uninstall</td></tr>
+                    <tr><td>Fee and payment entries</td><td>Device and your Firebase account</td><td>Deleted from both</td></tr>
+                    <tr><td>Attached PDFs and images, generated PDFs</td><td>Device only</td><td>Deleted from the app's private folders</td></tr>
+                    <tr><td>Local database and settings</td><td>Device only</td><td>Cleared</td></tr>
+                    <tr><td>Sign-in and Firebase Authentication account</td><td>Firebase</td><td>Account deleted; email becomes free to register again</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="ok">
+            <p>
+                If the cloud step fails &mdash; no connection, for example &mdash; the app stops and
+                tells you, and nothing is deleted yet. Retry when you are back online. This is
+                deliberate: it prevents half-deleted accounts with orphaned records.
+            </p>
+        </div>
+        <h3>If you only want to remove some records</h3>
+        <p>
+            You do not need to delete the account to remove data. Individual cases, hearings, fee
+            entries and documents can be deleted from the case detail screen, and clearing the app's
+            storage in Android settings removes everything held on the device without touching the
+            cloud copy.
+        </p>
+    </section>
+
+    <!-- Method 2 -->
+    <section class="card" id="email">
+        <h2><span class="num">3</span>Request deletion by email</h2>
+        <p>
+            Use this route if you have lost access to the app or cannot sign in. For security, the
+            request must come from the email address registered to the account.
+        </p>
+        <ol class="steps">
+            <li>
+                <strong>Send the request</strong>
+                Email <a href="mailto:aacrazyenterprises@gmail.com?subject=Account%20Deletion%20Request&body=Hello%2C%0D%0A%0D%0AI%20would%20like%20to%20delete%20my%20HearingVault%20account%20and%20all%20associated%20data.%0D%0A%0D%0AAccount%20email%3A%20%5Bthe%20address%20you%20signed%20up%20with%5D%0D%0AGoogle%20sign-in%3A%20yes%2Fno%0D%0A%0D%0AThank%20you.">aacrazyenterprises@gmail.com</a>
+                from the address on the account, with the subject "Account Deletion Request".
+            </li>
+            <li>
+                <strong>We verify ownership</strong>
+                We may ask you to confirm a detail only the account holder would know, or to reply
+                from the address on file if you wrote from another one.
+            </li>
+            <li>
+                <strong>We delete and confirm</strong>
+                The account and all its cloud records are deleted, and we reply to confirm. This is
+                completed within 30 days, and usually within a few working days.
+            </li>
+        </ol>
+        <p class="muted">
+            The copy on your phone is untouched by an email request &mdash; it disappears when you
+            uninstall the app or clear its storage from Android settings.
+        </p>
+        <div class="btn-row">
+            <a class="btn btn-primary" href="mailto:aacrazyenterprises@gmail.com?subject=Account%20Deletion%20Request&body=Hello%2C%0D%0A%0D%0AI%20would%20like%20to%20delete%20my%20HearingVault%20account%20and%20all%20associated%20data.%0D%0A%0D%0AAccount%20email%3A%20%5Bthe%20address%20you%20signed%20up%20with%5D%0D%0AGoogle%20sign-in%3A%20yes%2Fno%0D%0A%0D%0AThank%20you.">Open a prepared deletion email</a>
+            <a class="btn btn-ghost" href="privacy-policy.html#retention-deletion">Read the retention rules</a>
+        </div>
+    </section>
+
+    <!-- What survives -->
+    <section class="card" id="what-survives">
+        <h2><span class="num">4</span>What survives deletion</h2>
+        <ul>
+            <li><strong>Aggregated analytics</strong> that cannot be linked back to you.</li>
+            <li><strong>Crash reports</strong> already submitted, which expire after 90 days.</li>
+            <li><strong>Google Play purchase records</strong> &mdash; order history, invoices and tax
+                records are held by Google, not by us. An active ad-free subscription is a Google Play
+                subscription, so cancel it in the Play Store to stop future charges.</li>
+            <li><strong>Records we must keep by law</strong>, and what is needed to defend a legal claim.</li>
+            <li><strong>Copies in infrastructure backups</strong>, which are overwritten on their normal
+                rotation.</li>
+        </ul>
+        <div class="note">
+            <p>
+                Deleting your HearingVault account does <strong>not</strong> cancel an ad-free
+                subscription. Cancel it in <em>Google Play &rarr; Payments &amp; subscriptions &rarr;
+                Subscriptions</em> first, then delete the account.
+            </p>
+        </div>
+    </section>
+
+    <!-- Troubleshooting -->
+    <section class="card" id="troubleshooting">
+        <h2><span class="num">5</span>If something blocks you</h2>
+        <div class="table-wrap">
+            <table>
+                <tbody>
+                    <tr>
+                        <th scope="row">Forgot the password</th>
+                        <td>Use "Forgot password" on the sign-in screen, reset it through the email link, then delete from Settings.</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Lost access to the email address</th>
+                        <td>Email us and describe the account; we will verify you by other means and delete it.</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Already uninstalled the app</th>
+                        <td>The device copy is gone. Install the app again to sign in and delete, or send an email request.</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Deletion stopped with an error</th>
+                        <td>Usually a network problem. Go online and repeat Settings &rarr; Delete Account; nothing is removed until every step succeeds.</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">You signed in with Google</th>
+                        <td>Confirm with the Google account picker. We never see your Google password.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="card" id="contact">
+        <h2><span class="num">6</span>Questions about deletion</h2>
+        <p>
+            Email <a href="mailto:aacrazyenterprises@gmail.com?subject=Question%20about%20data%20deletion">aacrazyenterprises@gmail.com</a>
+            and put "Deletion" in the subject. We reply within 7 working days. The full explanation of
+            what the app stores, and how our advertising is verified, is in the
+            <a href="privacy-policy.html">privacy policy</a>.
+        </p>
+        <div class="btn-row">
+            <a class="btn btn-primary" href="privacy-policy.html">Read the privacy policy</a>
+            <a class="btn btn-ghost" href="index.html">Back to home</a>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>&copy; 2025&ndash;2026 AACrazy Enterprises. All rights reserved.</p>
+    <p>
+        <a href="index.html">Home</a> &middot;
+        <a href="privacy-policy.html">Privacy Policy</a> &middot;
+        <a href="delete-account.html">Delete Account</a> &middot;
+        <a href="app-ads.txt">app-ads.txt</a> &middot;
+        <a href="mailto:aacrazyenterprises@gmail.com">aacrazyenterprises@gmail.com</a>
+    </p>
+</footer>
 
 </body>
 </html>

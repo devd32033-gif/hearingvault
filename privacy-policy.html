@@ -1,98 +1,1166 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>HearingVault Privacy Policy</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="HearingVault privacy policy: what the app stores on your device, what syncs to your Firebase account, how Google AdMob advertising is verified through app-ads.txt, and how to delete your account and data.">
+<meta name="theme-color" content="#2c3e50">
+<title>Privacy Policy | HearingVault</title>
+<style>
+    :root {
+        --primary: #2c3e50;
+        --primary-dark: #1f2d3a;
+        --secondary: #3498db;
+        --secondary-dark: #2477b0;
+        --accent: #e74c3c;
+        --bg: #f5f8fb;
+        --card: #ffffff;
+        --ink: #233140;
+        --muted: #5f7183;
+        --line: #e4ebf2;
+        --ok: #1e8e5a;
+        --radius: 16px;
+        --shadow: 0 6px 24px rgba(20, 40, 70, .06);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        line-height: 1.65;
+        -webkit-text-size-adjust: 100%;
+    }
+
+    a { color: var(--secondary-dark); }
+    a:hover { text-decoration: underline; }
+
+    :focus-visible {
+        outline: 3px solid var(--secondary);
+        outline-offset: 2px;
+        border-radius: 6px;
+    }
+
+    .skip {
+        position: absolute;
+        left: -9999px;
+        top: 0;
+        background: var(--primary);
+        color: #fff;
+        padding: 12px 18px;
+        z-index: 100;
+    }
+    .skip:focus { left: 12px; top: 12px; }
+
+    /* ---------- Top bar ---------- */
+    .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(255, 255, 255, .92);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-inner {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 12px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+    }
+
+    .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+        color: var(--primary);
+        text-decoration: none;
+        letter-spacing: .2px;
+    }
+    .brand:hover { text-decoration: none; }
+
+    .brand .mark {
+        display: grid;
+        place-items: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 9px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: #fff;
+        font-size: .82rem;
+        font-weight: 700;
+    }
+
+    .topnav {
+        display: flex;
+        gap: 18px;
+        font-size: .92rem;
+    }
+    .topnav a {
+        color: var(--muted);
+        text-decoration: none;
+        font-weight: 600;
+    }
+    .topnav a:hover { color: var(--secondary-dark); }
+
+    /* ---------- Hero ---------- */
+    .hero {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: #fff;
+        padding: 54px 20px 58px;
+    }
+
+    .hero-inner {
+        max-width: 980px;
+        margin: 0 auto;
+    }
+
+    .eyebrow {
+        margin: 0 0 8px;
+        font-size: .78rem;
+        letter-spacing: .18em;
+        text-transform: uppercase;
+        opacity: .8;
+        font-weight: 700;
+    }
+
+    .hero h1 {
+        margin: 0;
+        font-size: clamp(1.9rem, 5vw, 2.75rem);
+        font-weight: 700;
+        letter-spacing: -.4px;
+    }
+
+    .hero .lede {
+        margin: 14px 0 0;
+        max-width: 62ch;
+        font-size: 1.05rem;
+        opacity: .94;
+    }
+
+    .pills {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 22px 0 0;
+        padding: 0;
+        font-size: .82rem;
+        font-weight: 600;
+    }
+
+    .pills li {
+        background: rgba(255, 255, 255, .16);
+        border: 1px solid rgba(255, 255, 255, .28);
+        padding: 6px 12px;
+        border-radius: 999px;
+    }
+
+    /* ---------- Layout ---------- */
+    main {
+        max-width: 980px;
+        margin: -26px auto 64px;
+        padding: 0 20px;
+    }
+
+    .card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 28px 30px;
+        margin-bottom: 22px;
+    }
+
+    .card > *:first-child { margin-top: 0; }
+    .card > *:last-child { margin-bottom: 0; }
+
+    h2 {
+        font-size: 1.35rem;
+        margin: 0 0 14px;
+        color: var(--primary);
+        letter-spacing: -.2px;
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        scroll-margin-top: 84px;
+    }
+
+    h2 .num {
+        flex: none;
+        display: inline-grid;
+        place-items: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 9px;
+        background: rgba(52, 152, 219, .12);
+        color: var(--secondary-dark);
+        font-size: .88rem;
+        font-weight: 700;
+    }
+
+    h3 {
+        font-size: 1.03rem;
+        margin: 22px 0 8px;
+        color: var(--primary-dark);
+        scroll-margin-top: 84px;
+    }
+
+    p { margin: 0 0 12px; }
+    ul, ol { margin: 0 0 14px; padding-left: 22px; }
+    li { margin: 6px 0; }
+    li > ul { margin-top: 6px; }
+
+    strong { color: var(--primary-dark); }
+
+    .muted { color: var(--muted); font-size: .93rem; }
+
+    /* ---------- Summary tiles ---------- */
+    .summary {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 14px;
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        padding: 0;
+        margin-bottom: 22px;
+    }
+
+    .tile {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        padding: 18px 20px;
+        border-top: 4px solid var(--secondary);
+    }
+
+    .tile h3 {
+        margin: 0 0 6px;
+        font-size: .95rem;
+    }
+
+    .tile p {
+        margin: 0;
+        font-size: .88rem;
+        color: var(--muted);
+    }
+
+    /* ---------- Table of contents ---------- */
+    .toc h2 { margin-bottom: 16px; }
+
+    .toc-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 6px 18px;
+        counter-reset: toc;
+    }
+
+    .toc-list li {
+        counter-increment: toc;
+        margin: 0;
+    }
+
+    .toc-list a {
+        display: flex;
+        gap: 10px;
+        align-items: baseline;
+        padding: 7px 4px;
+        text-decoration: none;
+        color: var(--ink);
+        font-size: .93rem;
+        border-bottom: 1px dashed var(--line);
+    }
+
+    .toc-list a::before {
+        content: counter(toc) ".";
+        color: var(--secondary-dark);
+        font-weight: 700;
+        min-width: 1.4em;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .toc-list a:hover { color: var(--secondary-dark); }
+
+    /* ---------- Callouts ---------- */
+    .note, .warn, .ok {
+        border-radius: 12px;
+        padding: 14px 18px;
+        margin: 16px 0;
+        font-size: .94rem;
+    }
+
+    .note { background: #eef6fd; border-left: 4px solid var(--secondary); }
+    .warn { background: #fdf1f0; border-left: 4px solid var(--accent); }
+    .ok   { background: #eef8f2; border-left: 4px solid var(--ok); }
+
+    .note p:last-child, .warn p:last-child, .ok p:last-child { margin-bottom: 0; }
+
+    /* ---------- Tables ---------- */
+    .table-wrap { overflow-x: auto; margin: 14px 0; }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: .92rem;
+        min-width: 520px;
+    }
+
+    thead th {
+        text-align: left;
+        background: #f2f6fa;
+        color: var(--primary);
+        font-size: .84rem;
+        letter-spacing: .04em;
+        text-transform: uppercase;
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--line);
+        white-space: nowrap;
+    }
+
+    tbody td {
+        padding: 11px 12px;
+        border-bottom: 1px solid var(--line);
+        vertical-align: top;
+    }
+
+    tbody tr:last-child td { border-bottom: 0; }
+    tbody tr:nth-child(even) { background: #fafcfe; }
+
+    /* ---------- Code ---------- */
+    code {
+        font-family: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+        font-size: .88em;
+        background: #eef2f7;
+        padding: 2px 6px;
+        border-radius: 5px;
+        word-break: break-word;
+    }
+
+    pre {
+        margin: 14px 0;
+        background: var(--primary-dark);
+        color: #dbe7f3;
+        padding: 16px 18px;
+        border-radius: 12px;
+        overflow-x: auto;
+        font-size: .88rem;
+        line-height: 1.5;
+    }
+
+    pre code {
+        background: none;
+        padding: 0;
+        color: inherit;
+        font-size: inherit;
+        white-space: pre;
+    }
+
+    /* ---------- Steps ---------- */
+    .steps {
+        list-style: none;
+        counter-reset: step;
+        padding: 0;
+        margin: 16px 0;
+    }
+
+    .steps li {
+        counter-increment: step;
+        position: relative;
+        padding: 0 0 0 46px;
+        margin: 0 0 14px;
+    }
+
+    .steps li::before {
+        content: counter(step);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: var(--secondary);
+        color: #fff;
+        display: grid;
+        place-items: center;
+        font-size: .86rem;
+        font-weight: 700;
+    }
+
+    .steps li strong { display: block; }
+
+    /* ---------- Buttons ---------- */
+    .btn-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 18px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 12px 22px;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: .95rem;
+        text-decoration: none;
+        transition: background-color .25s ease, transform .2s ease;
+    }
+
+    .btn-primary {
+        background: var(--secondary);
+        color: #fff;
+        box-shadow: 0 4px 10px rgba(52, 152, 219, .28);
+    }
+    .btn-primary:hover { background: var(--secondary-dark); transform: translateY(-1px); text-decoration: none; }
+
+    .btn-ghost {
+        background: #fff;
+        color: var(--primary);
+        border: 1px solid var(--line);
+    }
+    .btn-ghost:hover { border-color: var(--secondary); text-decoration: none; }
+
+    /* ---------- Footer ---------- */
+    footer {
+        background: var(--primary);
+        color: #cfd8e3;
+        padding: 32px 20px;
+        text-align: center;
+        font-size: .9rem;
+        margin-top: 40px;
+    }
+
+    footer a { color: #a9c7e4; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    footer p { margin: 4px 0; }
+
+    /* ---------- Dark mode ---------- */
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --bg: #0f1720;
+            --card: #16212c;
+            --ink: #dbe4ee;
+            --muted: #93a4b6;
+            --line: #26333f;
+            --primary-dark: #eaf1f8;
+            --shadow: 0 6px 24px rgba(0, 0, 0, .35);
         }
-        h1, h2, h3 {
-            color: #2c3e50;
-        }
-        .header {
-            text-align: center;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-        }
-    </style>
+        .topbar { background: rgba(15, 23, 32, .92); }
+        .brand, h2, h3, strong { color: #eaf1f8; }
+        h2 .num { background: rgba(52, 152, 219, .18); color: #7cb8e6; }
+        .note { background: #17293a; }
+        .warn { background: #2f1c1b; }
+        .ok { background: #14291f; }
+        thead th { background: #1b2836; color: #cfe0f0; }
+        tbody tr:nth-child(even) { background: #1a252f; }
+        code { background: #1d2a36; color: #cfe0f0; }
+        pre { background: #0b131b; }
+        .btn-ghost { background: transparent; color: #dbe4ee; }
+        a { color: #7cb8e6; }
+    }
+
+    /* ---------- Small screens ---------- */
+    @media (max-width: 620px) {
+        .card { padding: 22px 18px; }
+        .hero { padding: 40px 18px 46px; }
+        main { padding: 0 14px; }
+        .topnav { gap: 12px; font-size: .85rem; }
+        .topnav a:first-child { display: none; }
+        table { min-width: 460px; }
+    }
+
+    /* ---------- Print ---------- */
+    @media print {
+        .topbar, .toc, .btn-row, footer .no-print { display: none; }
+        body { background: #fff; color: #000; }
+        .hero { background: none; color: #000; padding: 0 0 16px; }
+        .hero .pills li { border-color: #999; }
+        .card { box-shadow: none; border: 0; padding: 0 0 18px; }
+        .card, h2, h3, table { break-inside: avoid; }
+        pre { background: #f2f2f2; color: #000; border: 1px solid #ccc; }
+    }
+</style>
 </head>
 <body>
-    <div class="header">
-        <h1>HearingVault Privacy Policy</h1>
-        <p><strong>Effective Date:</strong> December 2, 2025</p>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="topbar">
+    <div class="topbar-inner">
+        <a class="brand" href="index.html"><span class="mark">HV</span> HearingVault</a>
+        <nav class="topnav" aria-label="Site">
+            <a href="index.html">Home</a>
+            <a href="delete-account.html">Delete account</a>
+            <a href="app-ads.txt">app-ads.txt</a>
+        </nav>
+    </div>
+</div>
+
+<div class="hero">
+    <div class="hero-inner">
+        <p class="eyebrow">Legal</p>
+        <h1>Privacy Policy</h1>
+        <p class="lede">
+            HearingVault is a case management app for advocates. Your case records stay in the app's
+            private storage on your phone; a copy reaches the cloud only when you sign in and sync.
+            This page explains exactly what is stored, where, for how long, how our advertising is
+            verified, and how to delete everything.
+        </p>
+        <ul class="pills">
+            <li>Effective 2 December 2025</li>
+            <li>Last updated 29 October 2026</li>
+            <li>Applies to HearingVault 1.15 and later</li>
+        </ul>
+    </div>
+</div>
+
+<main id="main">
+
+    <!-- ================= Quick summary ================= -->
+    <div class="summary">
+        <div class="tile">
+            <h3>Device first</h3>
+            <p>Cases, hearings, fees and attached documents live in the app's private storage on your phone.</p>
+        </div>
+        <div class="tile">
+            <h3>Cloud only if you sign in</h3>
+            <p>Signed-in users get a copy of their case records in their own Firebase account, keyed to their user ID.</p>
+        </div>
+        <div class="tile">
+            <h3>Ads, not ad tracking profiles</h3>
+            <p>Ads come from Google AdMob and are verified with app-ads.txt. Case data is never passed to the ad SDK.</p>
+        </div>
+        <div class="tile">
+            <h3>One-tap deletion</h3>
+            <p>Settings &rarr; Delete Account removes the cloud records, the device files and the login itself.</p>
+        </div>
     </div>
 
-    <p>HearingVault ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application HearingVault, a legal case management app for advocates.</p>
+    <!-- ================= Table of contents ================= -->
+    <div class="card toc">
+        <h2><span class="num" aria-hidden="true">&#9776;</span>Contents</h2>
+        <ol class="toc-list">
+            <li><a href="#who-we-are">Who we are</a></li>
+            <li><a href="#data-we-collect">Data we collect</a></li>
+            <li><a href="#how-we-use">How and why we use it</a></li>
+            <li><a href="#where-data-lives">Where your data lives</a></li>
+            <li><a href="#ai-features">AI drafting and translation</a></li>
+            <li><a href="#ads">Advertising, AdMob verification and your choices</a></li>
+            <li><a href="#retention-deletion">Data retention and deletion</a></li>
+            <li><a href="#security">Security</a></li>
+            <li><a href="#third-parties">Third-party services</a></li>
+            <li><a href="#sharing">Sharing, disclosure and sale</a></li>
+            <li><a href="#children">Children's privacy</a></li>
+            <li><a href="#rights">Your privacy rights</a></li>
+            <li><a href="#changes">Changes to this policy</a></li>
+            <li><a href="#contact">How to contact us</a></li>
+        </ol>
+    </div>
 
-    <h2>1. Information We Collect</h2>
-    <h3>Information You Provide</h3>
-    <ul>
-        <li>Case details and hearing information</li>
-        <li>Client names and contact information</li>
-        <li>Document files related to legal cases</li>
-        <li>User account information (if applicable)</li>
-    </ul>
+    <!-- ================= 1 ================= -->
+    <section class="card" id="who-we-are">
+        <h2><span class="num" aria-hidden="true">1</span>Who we are</h2>
+        <p>
+            HearingVault is published by <strong>AACrazy Enterprises</strong> (India). In this policy
+            "we", "us" and "our" mean AACrazy Enterprises, and "the app" means the HearingVault
+            Android application distributed on Google Play under the package name
+            <code>com.aacrazyenterprises.hearingvault</code>.
+        </p>
+        <p>
+            We are the data controller for the personal data described here. If you are in the
+            European Economic Area, the United Kingdom or Switzerland, the same contact point below
+            handles data protection requests. Our contact address is
+            <a href="mailto:aacrazyenterprises@gmail.com">aacrazyenterprises@gmail.com</a>.
+        </p>
+        <div class="note">
+            <p>
+                <strong>Plain summary:</strong> we are a small independent developer. We do not run
+                advertising profiles of our own, we do not buy or sell personal data, and we cannot
+                read your cases &mdash; they are stored under your account, not in a dashboard we
+                browse.
+            </p>
+        </div>
+    </section>
 
-    <h3>Automatically Collected Information</h3>
-    <ul>
-        <li>Device information (device type, operating system)</li>
-        <li>App usage data and analytics</li>
-        <li>IP address and network information</li>
-    </ul>
+    <!-- ================= 2 ================= -->
+    <section class="card" id="data-we-collect">
+        <h2><span class="num" aria-hidden="true">2</span>Data we collect</h2>
 
-    <h2>2. How We Use Your Information</h2>
-    <ul>
-        <li>To provide and maintain our service</li>
-        <li>To manage your legal cases and hearings</li>
-        <li>To send notifications about upcoming hearings</li>
-        <li>To improve and personalize your app experience</li>
-        <li>To comply with legal obligations</li>
-    </ul>
+        <h3>2.1 Information you enter or import</h3>
+        <ul>
+            <li><strong>Account details:</strong> email address, display name and the sign-in method
+                (email and password, or Google Sign-In). If you use Google Sign-In we receive your
+                email, name and account identifier from Google. We never see or store your Google
+                password.</li>
+            <li><strong>Case records:</strong> case title, case number, court, client name, client
+                contact number, case type, status, notes and important dates.</li>
+            <li><strong>Hearings:</strong> hearing dates, purpose, court room, outcome and notes.</li>
+            <li><strong>Fee and payment entries:</strong> amounts, dates, payment mode and remarks.</li>
+            <li><strong>Documents you attach:</strong> PDFs and images you pick from your device,
+                plus PDFs the app generates (drafts, reports) and files you export.</li>
+            <li><strong>Optional AI drafting input:</strong> the command text you type and the draft
+                produced, when you use online AI drafting with your own API key (see section 5).</li>
+            <li><strong>App lock credentials:</strong> the PIN you set is stored only as a one-way
+                SHA-256 hash on your device. Biometric unlock uses Android's own biometric prompt;
+                we never receive your fingerprint or face data.</li>
+        </ul>
 
-    <h2>3. Information Sharing and Disclosure</h2>
-    <p>We may share information with:</p>
-    <ul>
-        <li><strong>Service providers:</strong> Third-party companies that perform services on our behalf</li>
-        <li><strong>Legal requirements:</strong> When required by law or to protect our rights</li>
-        <li><strong>Business transfers:</strong> In connection with a merger or acquisition</li>
-    </ul>
+        <h3>2.2 Information created automatically</h3>
+        <ul>
+            <li><strong>Firebase Analytics:</strong> app launches, feature and screen usage events,
+                app version, device model, operating system version, language, app instance
+                identifier, and a coarse region derived from your IP address. We use this to see
+                which screens fail or go unused &mdash; not to build a profile of you.</li>
+            <li><strong>Firebase Crashlytics:</strong> crash stack traces, the state of the app at the
+                time of the crash, device model, OS version, app version and an installation
+                identifier.</li>
+            <li><strong>Google AdMob (advertising):</strong> your advertising ID, IP address (from
+                which a coarse, city-level location can be inferred), device and app information, and
+                ad interaction events such as impressions and clicks. See section 6.</li>
+            <li><strong>Network state:</strong> whether you are online, so the app can queue sync and
+                show the offline banner.</li>
+        </ul>
 
-    <h2>4. Data Security</h2>
-    <p>We implement appropriate security measures to protect your information, including:</p>
-    <ul>
-        <li>Encryption of sensitive data</li>
-        <li>Secure cloud synchronization</li>
-        <li>Biometric authentication protection</li>
-        <li>Regular security assessments</li>
-    </ul>
+        <h3>2.3 What we do not collect</h3>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr><th scope="col">Never collected</th><th scope="col">Why not</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Precise GPS location</td><td>The app never requests a location permission.</td></tr>
+                    <tr><td>Contacts, SMS, call logs</td><td>Not needed and not requested.</td></tr>
+                    <tr><td>Microphone, camera, clipboard</td><td>Not requested. Photos are attached through Android's own photo picker, which hands us only the file you choose.</td></tr>
+                    <tr><td>Calendar</td><td>Hearings are kept inside the app; we never read your calendar.</td></tr>
+                    <tr><td>Health, financial account or browsing data</td><td>Outside the app's purpose.</td></tr>
+                    <tr><td>Your Google or Firebase password</td><td>Authentication is handled by Google; passwords are never transmitted to us in readable form.</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="muted">
+            The app declares internet, network state, notifications, exact alarms (hearing
+            reminders), wake lock and biometric unlock. Its libraries add Play Billing and the
+            advertising-ID permission that ships with Google's ads SDK. There is no location,
+            storage, camera, microphone or contacts permission in the app.
+        </p>
+    </section>
 
-    <h2>5. Third-Party Services</h2>
-    <p>Our app uses the following third-party services:</p>
-    <ul>
-        <li><strong>Google AdMob:</strong> For displaying advertisements</li>
-        <li><strong>Firebase:</strong> For analytics and crash reporting</li>
-        <li><strong>Google Play Services:</strong> For authentication and cloud services</li>
-    </ul>
+    <!-- ================= 3 ================= -->
+    <section class="card" id="how-we-use">
+        <h2><span class="num" aria-hidden="true">3</span>How and why we use it</h2>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Data</th>
+                        <th scope="col">Purpose</th>
+                        <th scope="col">Basis</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Account email and identifier</td>
+                        <td>Create your account, sign you in, keep your records separate from other users</td>
+                        <td>Performance of a contract</td>
+                    </tr>
+                    <tr>
+                        <td>Cases, hearings, fees, documents</td>
+                        <td>Run the core features of the app: diary, calendar, reminders, case details, fee tracking</td>
+                        <td>Performance of a contract</td>
+                    </tr>
+                    <tr>
+                        <td>Hearing dates and times</td>
+                        <td>Schedule on-device notifications and the home-screen widget</td>
+                        <td>Performance of a contract</td>
+                    </tr>
+                    <tr>
+                        <td>Crash and analytics diagnostics</td>
+                        <td>Find and fix bugs, understand which features are used</td>
+                        <td>Legitimate interest in a working app</td>
+                    </tr>
+                    <tr>
+                        <td>Advertising ID and ad events</td>
+                        <td>Serve advertising that keeps the free tier available</td>
+                        <td>Consent, where required, or legitimate interest with an opt-out</td>
+                    </tr>
+                    <tr>
+                        <td>Purchase and entitlement status</td>
+                        <td>Unlock and restore the ad-free subscription</td>
+                        <td>Performance of a contract</td>
+                    </tr>
+                    <tr>
+                        <td>Records of deletion requests</td>
+                        <td>Prove we honoured your request</td>
+                        <td>Legal obligation</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>
+            We do not use your case data to train models, to target ads, or for any purpose other than
+            running the features you asked for.
+        </p>
+    </section>
 
-    <h2>6. Children's Privacy</h2>
-    <p>Our service does not address anyone under the age of 13. We do not knowingly collect personal information from children under 13.</p>
+    <!-- ================= 4 ================= -->
+    <section class="card" id="where-data-lives">
+        <h2><span class="num" aria-hidden="true">4</span>Where your data lives</h2>
+        <ul>
+            <li><strong>On your device (always):</strong> the app keeps its own database and its
+                document folder in private storage that other apps cannot read. This works without
+                an account and without internet.</li>
+            <li><strong>In your Firebase account (only if you sign in and sync):</strong> your case
+                records, hearings and fee entries are written to Cloud Firestore under your user ID.
+                Security rules on the server allow a signed-in user to read and write only their own
+                documents.</li>
+            <li><strong>Your attached documents are never uploaded.</strong> Files stay in the app's
+                private folder on your phone. This is deliberate: an order sheet is often more
+                sensitive than a case title.</li>
+            <li><strong>Signing out</strong> stops syncing. Records already on the device remain
+                available on the device until you delete them.</li>
+        </ul>
+    </section>
 
-    <h2>7. Changes to This Privacy Policy</h2>
-    <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the effective date.</p>
+    <!-- ================= 5 ================= -->
+    <section class="card" id="ai-features">
+        <h2><span class="num" aria-hidden="true">5</span>AI drafting and translation</h2>
+        <p>AI is optional, and the app works fully without it. It has two distinct modes.</p>
 
-    <h2>8. Contact Us</h2>
-    <p>If you have any questions about this Privacy Policy, please contact us at:</p>
-    <p>Email: privacy@aacrazyenterprises@gmail.com</p>
+        <h3>5.1 Online drafting with your own key (opt-in)</h3>
+        <p>
+            If you paste your own Google AI Studio API key into Settings, the advertising-free
+            drafting screen lets you write a draft, a summary or a translation refinement using the
+            <strong>Google Gemini API</strong>. The request is sent directly from your phone to
+            <code>generativelanguage.googleapis.com</code>; it does not pass through a server of ours.
+        </p>
+        <ul>
+            <li>What is sent: the text in your command box, the case details you include in it, and
+                the model name.</li>
+            <li>What comes back: the generated text, which is stored only in the app.</li>
+            <li>The key is stored in the app's encrypted preferences, bound to your device's
+                keystore, and is never written to Firestore or to any log.</li>
+        </ul>
+        <div class="warn">
+            <p>
+                <strong>Use it with care.</strong> On Google's free tier, prompts and responses may be
+                used to improve Google's products, and human reviewers may read them. Do not type
+                client names, addresses, phone numbers or other identifying details into the command
+                box. Type "the client" instead of a name, and edit the draft afterwards.
+            </p>
+        </div>
 
-    <hr>
-    <p><strong>Note:</strong> This privacy policy is hosted on GitHub Pages. The app itself stores data locally on your device with optional cloud synchronization.</p>
+        <h3>5.2 On-device features (nothing leaves the phone)</h3>
+        <ul>
+            <li><strong>Order-sheet OCR</strong> (ML Kit text recognition) reads a photo or scan and
+                extracts the text locally.</li>
+            <li><strong>Offline translation</strong> (ML Kit Translate) translates drafts on the
+                device. The first use of a language downloads a small model over Wi-Fi; after that it
+                works with no internet.</li>
+            <li>Extracted text, translations and drafts are handled entirely on your device.</li>
+        </ul>
+    </section>
+
+    <!-- ================= 6 ================= -->
+    <section class="card" id="ads">
+        <h2><span class="num" aria-hidden="true">6</span>Advertising, AdMob verification and your choices</h2>
+        <p>
+            The free version of HearingVault is funded by advertising served by
+            <strong>Google AdMob</strong>. This section explains what that means in this app, and how
+            our ad inventory is verified.
+        </p>
+
+        <h3>6.1 Who serves the ads</h3>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr><th scope="col">Item</th><th scope="col">Value</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Ad network</td><td>Google AdMob (Google Ireland Limited / Google LLC)</td></tr>
+                    <tr><td>AdMob publisher ID</td><td><code>pub-2698531881286039</code></td></tr>
+                    <tr><td>AdMob app ID</td><td><code>ca-app-pub-2698531881286039~2437237905</code></td></tr>
+                    <tr><td>Formats used</td><td>One anchored banner at the bottom of a screen; occasional full-screen interstitial at a natural break between tasks</td></tr>
+                    <tr><td>Formats not used</td><td>No rewarded ads, no publisher native ads, no ads on the sign-in screen, no ads while a draft, PDF or report is being produced</td></tr>
+                    <tr><td>Frequency</td><td>At most one banner per screen, interstitials limited per session and never mid-task; ads disappear completely with the ad-free purchase</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>6.2 How our ads are verified (app-ads.txt)</h3>
+        <p>
+            Google's Authorized Digital Sellers standard (app-ads.txt) is how an ad exchange confirms
+            that a given app is really allowed to sell inventory under a publisher account. We publish
+            the file at the root of the website listed as our developer website on Google Play, so
+            Google can review it and periodically re-check it:
+        </p>
+        <p>
+            <a href="app-ads.txt">https://devd32033-gif.github.io/hearingvault/app-ads.txt</a>
+        </p>
+        <p>The complete contents of that file are:</p>
+        <pre><code>google.com, pub-2698531881286039, DIRECT, f08c47fec0942fa0</code></pre>
+        <ul>
+            <li><code>google.com</code> &mdash; the authorising ad system.</li>
+            <li><code>pub-2698531881286039</code> &mdash; our AdMob publisher account; it matches the
+                publisher ID in the app's AdMob app ID.</li>
+            <li><code>DIRECT</code> &mdash; we sell this inventory directly, not through a reseller.</li>
+            <li><code>f08c47fec0942fa0</code> &mdash; Google's certification authority identifier.</li>
+        </ul>
+        <p>
+            Anyone can check the file: if a third party claimed to represent HearingVault's ad
+            inventory, this file would contradict the claim. If the URL above ever stops working,
+            email us &mdash; verification also depends on the developer website field in our Play
+            Store listing.
+        </p>
+
+        <h3>6.3 What the ad SDK can see, and what it cannot</h3>
+        <p>The AdMob SDK can receive, for the purpose of serving and measuring ads:</p>
+        <ul>
+            <li>your advertising ID (a resettable identifier controlled in Android settings);</li>
+            <li>your IP address, from which a coarse location can be inferred;</li>
+            <li>device model, operating system, screen size, language, app version and app ID;</li>
+            <li>ad events: request, fill, impression, click, close.</li>
+        </ul>
+        <div class="ok">
+            <p>
+                <strong>Never shared with the ad SDK:</strong> case titles, client names, client phone
+                numbers, notes, hearing details, fee amounts, document contents, your email address,
+                or the text you type into the AI drafting screen. Ads are not built from your case
+                content, and we do not relay your account identity to the ad network.
+            </p>
+        </div>
+
+        <h3>6.4 Consent</h3>
+        <p>
+            On first launch, where the law requires it (for example in the EEA, the UK and
+            Switzerland), the app shows Google's consent message through the User Messaging Platform
+            before any ad is requested. Ads are only requested after consent has been established.
+        </p>
+        <p>
+            HearingVault is a professional tool for adult legal practitioners, so the app is not
+            tagged as being directed at children and ads are not served to child-directed audiences.
+        </p>
+
+        <h3>6.5 Your controls over advertising</h3>
+        <ol>
+            <li><strong>Consent form:</strong> shown at first launch where required. Choose
+                "non-personalised" if you prefer ads that are not based on your advertising ID.</li>
+            <li><strong>Device-level advertising ID:</strong> open Android
+                <em>Settings &rarr; Privacy &rarr; Ads</em> (wording varies by manufacturer) and delete
+                or reset the advertising ID. Ads will still appear, but they can no longer be
+                personalised with it.</li>
+            <li><strong>Remove ads entirely:</strong> buy the ad-free subscription
+                (<code>hearing_vault_ad_free_151218</code>) from <em>Settings &rarr; Ad-Free</em>. Once it
+                is active the app stops requesting banners and interstitials, and existing ads close.
+                Cancel any time in Google Play &rarr; Payments &amp; subscriptions &rarr; Subscriptions.</li>
+            <li><strong>Ask us:</strong> email
+                <a href="mailto:aacrazyenterprises@gmail.com">aacrazyenterprises@gmail.com</a> if you
+                want help withdrawing a consent choice or understanding what an ad was.</li>
+            <li><strong>Report a bad ad:</strong> send us a screenshot; we block categories and
+                individual advertisers through AdMob's blocking controls.</li>
+        </ol>
+        <p class="muted">
+            Google's own description of how it uses information from apps that use its services is at
+            <a href="https://policies.google.com/technologies/partner-sites" rel="noopener">policies.google.com/technologies/partner-sites</a>.
+        </p>
+    </section>
+
+    <!-- ================= 7 ================= -->
+    <section class="card" id="retention-deletion">
+        <h2><span class="num" aria-hidden="true">7</span>Data retention and deletion</h2>
+
+        <h3>7.1 How long we keep data</h3>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr><th scope="col">Data</th><th scope="col">Stored where</th><th scope="col">Kept for</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Cases, hearings, fee entries</td><td>Device and your Firestore account</td><td>Until you delete them or delete your account</td></tr>
+                    <tr><td>Attached and generated documents</td><td>Device only</td><td>Until you delete them, clear app data, or uninstall</td></tr>
+                    <tr><td>App settings, language, app-lock hash</td><td>Device only</td><td>Until you clear app data or uninstall</td></tr>
+                    <tr><td>Crash reports (Crashlytics)</td><td>Google Firebase</td><td>90 days</td></tr>
+                    <tr><td>Usage analytics (Analytics)</td><td>Google Firebase</td><td>Up to 14 months, in aggregate</td></tr>
+                    <tr><td>Advertising ID and ad events</td><td>Google AdMob</td><td>Per Google's own retention schedule; you can reset the identifier at any time</td></tr>
+                    <tr><td>Purchase and subscription records</td><td>Google Play, plus entitlement flag in the app</td><td>As long as Google Play keeps your order history; entitlement until the subscription lapses</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>7.2 Deleting your account and data</h3>
+        <p>
+            <strong>Deleting your account deletes your data, not just your login.</strong> The in-app
+            flow runs the steps below in order, and stops with an error if the cloud step fails, so
+            you can retry instead of ending up with orphaned records.
+        </p>
+        <ol class="steps">
+            <li>
+                <strong>Open Settings</strong>
+                Sign in, open the app drawer menu and choose <em>Settings</em>.
+            </li>
+            <li>
+                <strong>Tap Delete Account</strong>
+                It is in the account section at the bottom of the page and is labelled in red.
+            </li>
+            <li>
+                <strong>Confirm you are the account holder</strong>
+                Re-enter your password, or re-authenticate with Google. This prevents someone holding
+                an unlocked phone from wiping your practice records.
+            </li>
+            <li>
+                <strong>Deletion runs</strong>
+                All your Firestore records (cases, hearings, payments) are deleted, then the document
+                files on the device, then the local database, then the Firebase login itself. You are
+                returned to the sign-in screen.
+            </li>
+        </ol>
+
+        <h3>7.3 What exactly is erased</h3>
+        <ul>
+            <li>Every cloud record tied to your user ID: cases, hearings, fee and payment entries.</li>
+            <li>Every attached PDF and image, and every PDF the app generated, in the app's private folders.</li>
+            <li>The local database, so no case remains readable on the phone.</li>
+            <li>Your sign-in details as stored by the app, and the Firebase Authentication account itself.</li>
+            <li>The ad-free entitlement record is tied to your Google Play account, not to the deleted login.</li>
+        </ul>
+
+        <h3>7.4 What is not erased</h3>
+        <ul>
+            <li>Aggregated, de-identified analytics that can no longer be linked to you.</li>
+            <li>Crash reports already sent, which expire on their own schedule (90 days).</li>
+            <li>Purchase records held by Google Play for accounting and tax purposes.</li>
+            <li>Anything we are legally required to keep, and anything needed to defend a legal claim.</li>
+            <li>Copies of records inside Google's infrastructure backups, which are overwritten on
+                their normal rotation.</li>
+        </ul>
+
+        <h3>7.5 If you cannot use the app</h3>
+        <p>
+            Follow the request flow on the
+            <a href="delete-account.html">Account Deletion page</a>, or email
+            <a href="mailto:aacrazyenterprises@gmail.com">aacrazyenterprises@gmail.com</a> from the
+            address registered to the account. We verify ownership, then delete the account and its
+            cloud records, and confirm by email. Such requests are completed within 30 days, usually
+            much sooner. The device copy disappears when you uninstall the app or clear its storage in
+            Android settings.
+        </p>
+        <div class="btn-row">
+            <a class="btn btn-primary" href="delete-account.html">Open the deletion request page</a>
+            <a class="btn btn-ghost" href="mailto:aacrazyenterprises@gmail.com?subject=Account%20Deletion%20Request">Email a deletion request</a>
+        </div>
+    </section>
+
+    <!-- ================= 8 ================= -->
+    <section class="card" id="security">
+        <h2><span class="num" aria-hidden="true">8</span>Security</h2>
+        <ul>
+            <li>All network traffic uses HTTPS/TLS. The app is configured to refuse cleartext
+                connections.</li>
+            <li>Cloud records are protected by server-side Firestore rules: a signed-in user can only
+                read and write documents that carry their own user ID.</li>
+            <li>Passwords are handled by Firebase Authentication and are never stored by the app in
+                readable form.</li>
+            <li>The app-lock PIN is stored as a one-way SHA-256 hash; biometric unlock uses the Android
+                biometric prompt, so fingerprint and face data never leave the device's secure
+                hardware.</li>
+            <li>Your AI API key is kept in keystore-backed encrypted preferences, is never logged, and
+                is displayed masked on screen.</li>
+            <li>Access to the Firebase project is limited to the developer account and protected by
+                multi-factor sign-in.</li>
+        </ul>
+        <p>
+            No system is completely secure. If you believe your data has been compromised, email us
+            immediately at
+            <a href="mailto:aacrazyenterprises@gmail.com">aacrazyenterprises@gmail.com</a>. If a breach
+            affects your personal data, we will notify affected users and the competent authority as
+            required by law.
+        </p>
+    </section>
+
+    <!-- ================= 9 ================= -->
+    <section class="card" id="third-parties">
+        <h2><span class="num" aria-hidden="true">9</span>Third-party services</h2>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Service</th>
+                        <th scope="col">Used for</th>
+                        <th scope="col">Data involved</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="https://firebase.google.com/support/privacy" rel="noopener">Firebase Authentication</a></td>
+                        <td>Sign-in with email/password or Google</td>
+                        <td>Email, display name, account identifier</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://firebase.google.com/support/privacy" rel="noopener">Cloud Firestore</a></td>
+                        <td>Optional cloud copy of cases, hearings and fees</td>
+                        <td>The records you create, keyed to your user ID</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://firebase.google.com/support/privacy" rel="noopener">Firebase Analytics</a></td>
+                        <td>Usage measurement</td>
+                        <td>App events, device and app metadata, coarse region</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://firebase.google.com/support/privacy" rel="noopener">Firebase Crashlytics</a></td>
+                        <td>Crash reporting</td>
+                        <td>Stack trace, device state, app version</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://policies.google.com/technologies/ads" rel="noopener">Google AdMob</a></td>
+                        <td>Advertising, verified by app-ads.txt</td>
+                        <td>Advertising ID, IP address, device and ad event data</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://ai.google.dev/gemini-api/terms" rel="noopener">Google Gemini API</a></td>
+                        <td>Optional online AI drafting, only with your own key</td>
+                        <td>The prompt text and generated draft</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://developers.google.com/ml-kit" rel="noopener">ML Kit</a></td>
+                        <td>On-device OCR and translation</td>
+                        <td>None leaves the device</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://policies.google.com/privacy" rel="noopener">Google Play Billing</a></td>
+                        <td>Ad-free subscription, purchase restore</td>
+                        <td>Purchase token and subscription state</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://policies.google.com/privacy" rel="noopener">Google Play Services / Sign-In</a></td>
+                        <td>Google sign-in, in-app updates</td>
+                        <td>Google account identifier, app version</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>
+            These providers process data under their own privacy terms. We choose services that offer
+            contractual data protection terms and we do not add any other advertising or tracking SDK.
+        </p>
+    </section>
+
+    <!-- ================= 10 ================= -->
+    <section class="card" id="sharing">
+        <h2><span class="num" aria-hidden="true">10</span>Sharing, disclosure and sale</h2>
+        <p><strong>We do not sell your personal data, and we do not share it for cross-app advertising profiles of our own.</strong> Data is disclosed only:</p>
+        <ul>
+            <li><strong>to the service providers listed in section 9</strong>, strictly to run the
+                features you use;</li>
+            <li><strong>when the law requires it</strong>, for example in response to a valid court
+                order &mdash; and where we are permitted, we will tell you;</li>
+            <li><strong>to protect rights and safety</strong>, to investigate fraud or abuse, or to
+                defend a legal claim;</li>
+            <li><strong>in a business transfer</strong>, if the app is sold or merged. The buyer would
+                be bound by this policy for data already collected, and we would tell you before your
+                data became subject to a different one;</li>
+            <li><strong>with your direction</strong>, for example when you use the app's share or
+                export function to send a document to another app.</li>
+        </ul>
+        <p>
+            Sharing a document or report through Android's share sheet sends it wherever you choose
+            &mdash; that destination is outside our control and outside this policy.
+        </p>
+    </section>
+
+    <!-- ================= 11 ================= -->
+    <section class="card" id="children">
+        <h2><span class="num" aria-hidden="true">11</span>Children's privacy</h2>
+        <p>
+            HearingVault is a professional tool for advocates and is intended for adults aged 18 and
+            over. It is not directed to children. We do not knowingly collect personal data from
+            anyone under 18, and the app is not tagged as child-directed, so advertisements are not
+            served to a child audience.
+        </p>
+        <p>
+            If you believe a minor has created an account, email
+            <a href="mailto:aacrazyenterprises@gmail.com">aacrazyenterprises@gmail.com</a> and we will
+            delete the account and its records.
+        </p>
+    </section>
+
+    <!-- ================= 12 ================= -->
+    <section class="card" id="rights">
+        <h2><span class="num" aria-hidden="true">12</span>Your privacy rights</h2>
+        <p>Subject to applicable law, including India's Digital Personal Data Protection Act, 2023 and, where relevant, the GDPR, you may:</p>
+        <ul>
+            <li><strong>Access</strong> the personal data we hold about you.</li>
+            <li><strong>Correct</strong> inaccurate data &mdash; most fields can be edited directly in
+                the app.</li>
+            <li><strong>Delete</strong> your account and data, in the app or by request (section 7).</li>
+            <li><strong>Export</strong> a copy of your records &mdash; ask us and we will provide a
+                machine-readable file.</li>
+            <li><strong>Withdraw consent</strong> to advertising personalisation at any time, without
+                losing access to the app.</li>
+            <li><strong>Object or restrict</strong> processing based on legitimate interest.</li>
+            <li><strong>Complain</strong> to your supervisory authority &mdash; the Data Protection
+                Board of India, or your EU/UK data protection authority.</li>
+        </ul>
+        <p>
+            Email us to exercise any of these rights. We respond within 30 days and may ask you to
+            verify that you control the account, so that one person cannot request another's data.
+        </p>
+    </section>
+
+    <!-- ================= 13 ================= -->
+    <section class="card" id="changes">
+        <h2><span class="num" aria-hidden="true">13</span>Changes to this policy</h2>
+        <p>
+            We update this page when the app changes: a new SDK, a new permission, or a change in how
+            deletion works. The "last updated" date at the top always reflects the current version.
+            For material changes we will also show a notice in the app or describe the change in the
+            Play Store release notes, before the change takes effect.
+        </p>
+    </section>
+
+    <!-- ================= 14 ================= -->
+    <section class="card" id="contact">
+        <h2><span class="num" aria-hidden="true">14</span>How to contact us</h2>
+        <div class="table-wrap">
+            <table>
+                <tbody>
+                    <tr><th scope="row">Developer</th><td>AACrazy Enterprises (India)</td></tr>
+                    <tr><th scope="row">App</th><td>HearingVault for Android &mdash; <code>com.aacrazyenterprises.hearingvault</code></td></tr>
+                    <tr><th scope="row">Email</th><td><a href="mailto:aacrazyenterprises@gmail.com">aacrazyenterprises@gmail.com</a></td></tr>
+                    <tr><th scope="row">Privacy, deletion and ads</th><td>Use the same address; put "Privacy", "Deletion" or "Ads" in the subject so it reaches the right queue</td></tr>
+                    <tr><th scope="row">Response time</th><td>Within 7 working days; deletion requests completed within 30 days</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="btn-row">
+            <a class="btn btn-primary" href="mailto:aacrazyenterprises@gmail.com?subject=Privacy%20question%20about%20HearingVault">Email the developer</a>
+            <a class="btn btn-ghost" href="delete-account.html">Delete my account</a>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>&copy; 2025&ndash;2026 AACrazy Enterprises. All rights reserved.</p>
+    <p class="no-print">
+        <a href="index.html">Home</a> &middot;
+        <a href="privacy-policy.html">Privacy Policy</a> &middot;
+        <a href="delete-account.html">Delete Account</a> &middot;
+        <a href="app-ads.txt">app-ads.txt</a> &middot;
+        <a href="mailto:aacrazyenterprises@gmail.com">aacrazyenterprises@gmail.com</a>
+    </p>
+</footer>
+
 </body>
 </html>
